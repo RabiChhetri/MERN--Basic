@@ -5,6 +5,7 @@ const App = () => {
   const [array, setArray] = useState(['Apple','Mango','Banana'])
   const [filterArray, setFilterArray] = useState([])
   const [formData, setFormData] = useState('')
+  const [index, setIndex] = useState('')
 
   const handleIncrease=()=>{
     setCount((prev)=>prev+1)
@@ -21,10 +22,24 @@ const App = () => {
   const valueUpdate=(e)=>{
     setFormData(e.target.value)
   }
+  const indexChange=(e)=>{
+    setIndex(e.target.value)
+  }
+  // const valueChange=()=>{
+  //   alert(`The value added is ${formData}`)
+  //   setArray([...array,formData])
+  //   setFormData('')
+  // }
   const valueChange=()=>{
-    alert(`The value added is ${formData}`)
-    setArray([...array,formData])
-    setFormData('')
+    if(setIndex==0||setIndex==null && formData=='' || formData=='null'){
+      alert('Please Enter the plase')
+    }
+    else{
+      const newArray=[...array.slice(0,index),formData,...array.slice(index)]
+      setArray([...newArray])
+      setFormData('')
+      setIndex('')
+    }
   }
   const filterTheShit=()=>{
     let filterValue=array?.filter(item=>item.length%2==0)
@@ -45,11 +60,12 @@ const App = () => {
       <ul>
         {
           array?.map((item,index)=>
-          <li>{item}</li>
+          <li key={index}>{item}</li>
           )
         }
       </ul>
       <input type="text" value={formData} onChange={valueUpdate}/>
+      <input type="number" value={index} onChange={indexChange}/>
       <button onClick={valueChange}>Add</button>
     </div>
 
@@ -58,8 +74,8 @@ const App = () => {
       <button onClick={filterTheShit}>Filter the array</button>
       <ul>
         {
-          filterArray?.map((item)=>
-          <li>{item}</li>
+          filterArray?.map((item,index)=>
+          <li key={index}>{item}</li>
           )
         }
       </ul>

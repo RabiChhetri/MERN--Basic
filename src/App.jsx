@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const App = () => {
   const [count, setCount] = useState(0)
   const [array, setArray] = useState(['Apple','Mango','Banana'])
+  const [filterArray, setFilterArray] = useState([])
   const [formData, setFormData] = useState('')
 
   const handleIncrease=()=>{
@@ -25,6 +26,10 @@ const App = () => {
     setArray([...array,formData])
     setFormData('')
   }
+  const filterTheShit=()=>{
+    let filterValue=array?.filter(item=>item.length%2==0)
+    setFilterArray([...filterValue])
+  }
 
 
   return (
@@ -46,6 +51,18 @@ const App = () => {
       </ul>
       <input type="text" value={formData} onChange={valueUpdate}/>
       <button onClick={valueChange}>Add</button>
+    </div>
+
+    <div>
+      <h2>Filter the array</h2>
+      <button onClick={filterTheShit}>Filter the array</button>
+      <ul>
+        {
+          filterArray?.map((item)=>
+          <li>{item}</li>
+          )
+        }
+      </ul>
     </div>
     </>
     

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const App = () => {
   const [count, setCount] = useState(0)
   const [array, setArray] = useState(['Apple','Mango','Banana'])
+  const [formData, setFormData] = useState('')
 
   const handleIncrease=()=>{
     setCount((prev)=>prev+1)
@@ -15,6 +16,14 @@ const App = () => {
     else{
       setCount((prev)=>prev-1)
     }
+  }
+  const valueUpdate=(e)=>{
+    setFormData(e.target.value)
+  }
+  const valueChange=()=>{
+    alert(`The value added is ${formData}`)
+    setArray([...array,formData])
+    setFormData('')
   }
 
 
@@ -35,6 +44,8 @@ const App = () => {
           )
         }
       </ul>
+      <input type="text" value={formData} onChange={valueUpdate}/>
+      <button onClick={valueChange}>Add</button>
     </div>
     </>
     

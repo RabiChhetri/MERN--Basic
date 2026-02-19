@@ -95,6 +95,7 @@ import React from 'react'
 import { useState } from 'react'
 
 const App = () => {
+  const [cart, setCart] = useState([])
   const [products, setProducts] = useState([
   {
     id: 1,
@@ -125,21 +126,40 @@ const App = () => {
     inStock: true
   }
 ])
+const addToCart=(id)=>{
+  console.log(id)
+  const item=products.find((item)=>item.id===id)
+  setCart((preState)=>
+  [...preState,item]
+  )
+}
   return (
-    <div>
+    <>
       <h1>Prodcts</h1>
       <ul>
-        {products.map((item)=>
+        {products?.map((item)=>
         <div key={item.id}>
           <div>
             <span>Name:</span>
             <span>{item.name}</span>
-            <button>Add to Cart</button>
+            <button onClick={()=>addToCart(item.id)}>Add to Cart</button>
           </div>
         </div>
         )}
       </ul>
-    </div>
+      <div>
+        <h1>Cart Item</h1>
+        <ul>
+          {
+            cart?.map((item,inex)=>
+            <>
+            <li>{item.name}</li>
+            </>
+            )
+          }
+        </ul>
+      </div>
+    </>
   )
 }
 

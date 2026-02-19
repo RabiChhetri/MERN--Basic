@@ -158,7 +158,7 @@ const handleDeacrese=(id)=>{
   }
   else{
     setCart((prevState)=>
-    prevState.map((item)=>item.id===id?{...item,quantity:item.quantity-1}:item))
+    prevState.map((item)=>item.id===id?item.quantity<=0?{...item,quantity:0}:{...item,quantity:item.quantity-1}:item))
   }
 }
 

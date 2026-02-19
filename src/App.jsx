@@ -126,6 +126,7 @@ const App = () => {
     inStock: true
   }
 ])
+
 const addToCart=(id)=>{
   console.log(id)
   const item=products.find((item)=>item.id===id)
@@ -144,6 +145,21 @@ const addToCart=(id)=>{
   )
  }
  console.log('This is dcart',cart)
+}
+
+const handleDeacrese=(id)=>{
+  const item=products.find((item)=>item.id===id)
+  console.log(item)
+  const isExisting=cart.find((item)=>item.id===id)
+  if(!isExisting){
+    setCart((prevState)=>{
+      [...prevState,{...item,quantity:1}]
+    })
+  }
+  else{
+    setCart((prevState)=>
+    prevState.map((item)=>item.id===id?{...item,quantity:item.quantity-1}:item))
+  }
 }
 
   return (
@@ -165,7 +181,10 @@ const addToCart=(id)=>{
         <ul>
           {
             cart?.map((item,index)=>
+            <>
             <li key={index}>{item.name},{item.quantity}</li>
+            <button onClick={()=>handleDeacrese(item.id)}>Decrease Item</button>
+            </>
             )
           }
         </ul>

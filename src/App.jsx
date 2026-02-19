@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+/*import React, { useState } from 'react'
 
 const App = () => {
   const [count, setCount] = useState(0)
-  const [array, setArray] = useState(['Apple','Mango','Banana'])
+  const [array, setArray] = useState(['Apple','Orange','Banana'])
   const [filterArray, setFilterArray] = useState([])
   const [formData, setFormData] = useState('')
   const [index, setIndex] = useState('')
@@ -19,20 +19,18 @@ const App = () => {
       setCount((prev)=>prev-1)
     }
   }
+
   const valueUpdate=(e)=>{
     setFormData(e.target.value)
   }
-  const indexChange=(e)=>{
+
+  const indexUpdate=(e)=>{
     setIndex(e.target.value)
   }
-  // const valueChange=()=>{
-  //   alert(`The value added is ${formData}`)
-  //   setArray([...array,formData])
-  //   setFormData('')
-  // }
+
   const valueChange=()=>{
-    if(setIndex==0||setIndex==null && formData=='' || formData=='null'){
-      alert('Please Enter the plase')
+    if(setIndex==''||setIndex=='null' && formData=='' || formData=='null'){
+      alert('Please Enetr the place')
     }
     else{
       const newArray=[...array.slice(0,index),formData,...array.slice(index)]
@@ -41,47 +39,107 @@ const App = () => {
       setIndex('')
     }
   }
-  const filterTheShit=()=>{
-    let filterValue=array?.filter(item=>item.length%2==0)
+
+  // const valueChange=()=>{
+  //   alert(`the valude added is ${formData}`)
+  //   setArray([...array,formData])
+  //   setFormData('')
+  // }
+
+  const filterTheShift=()=>{
+    const filterValue=array?.filter(item=>item.length%2==0)
     setFilterArray([...filterValue])
   }
 
 
+
   return (
     <>
-    <div>
-      <h1>The value of Counter is {count}</h1>
-      <button onClick={handleIncrease}>Increase</button>
-      <button onClick={handleDecrease}>Decrease</button>
-    </div>
-
-    <div>
-      <h2>Array and Shift</h2>
+      <div>
+        <h1>the value of count is {count}</h1>
+        <button onClick={handleIncrease}>Increase</button>
+        <button onClick={handleDecrease}>Decrease</button>
+      </div>
+      <div>
+      <h2>Array And Shift</h2>
       <ul>
         {
           array?.map((item,index)=>
-          <li key={index}>{item}</li>
+            <li key={index}>{item}</li>
           )
         }
+        <input type="text" value={formData} onChange={valueUpdate}/>
+        <input type="number" value={index} onChange={indexUpdate}/>
+        <button onClick={valueChange}>Add</button>
       </ul>
-      <input type="text" value={formData} onChange={valueUpdate}/>
-      <input type="number" value={index} onChange={indexChange}/>
-      <button onClick={valueChange}>Add</button>
-    </div>
-
-    <div>
-      <h2>Filter the array</h2>
-      <button onClick={filterTheShit}>Filter the array</button>
-      <ul>
-        {
-          filterArray?.map((item,index)=>
-          <li key={index}>{item}</li>
-          )
-        }
-      </ul>
-    </div>
+      </div>
+      <div>
+        <h2>Filter and Shift</h2>
+        <button onClick={filterTheShift}>filter the array</button>
+        <ul>
+          {
+            filterArray?.map((item,index)=>
+            <li key={index}>{item}</li>
+            )
+          }
+        </ul>
+      </div>
     </>
-    
+  )
+}
+
+export default App */
+
+
+import React from 'react'
+import { useState } from 'react'
+
+const App = () => {
+  const [products, setProducts] = useState([
+  {
+    id: 1,
+    name: "Laptop",
+    price: 800,
+    category: "Electronics",
+    inStock: true
+  },
+  {
+    id: 2,
+    name: "Headphones",
+    price: 50,
+    category: "Accessories",
+    inStock: true
+  },
+  {
+    id: 3,
+    name: "Keyboard",
+    price: 30,
+    category: "Accessories",
+    inStock: false
+  },
+  {
+    id: 4,
+    name: "Smartphone",
+    price: 600,
+    category: "Electronics",
+    inStock: true
+  }
+])
+  return (
+    <div>
+      <h1>Prodcts</h1>
+      <ul>
+        {products.map((item)=>
+        <div key={item.id}>
+          <div>
+            <span>Name:</span>
+            <span>{item.name}</span>
+            <button>Add to Cart</button>
+          </div>
+        </div>
+        )}
+      </ul>
+    </div>
   )
 }
 

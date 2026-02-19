@@ -129,10 +129,23 @@ const App = () => {
 const addToCart=(id)=>{
   console.log(id)
   const item=products.find((item)=>item.id===id)
-  setCart((preState)=>
+  /*setCart((preState)=>
   [...preState,item]
+  )*/
+ console.log(item)
+ const isExisting=cart.find((item)=>item.id===id)
+ if(!isExisting){
+  setCart((prevState)=>
+  [...prevState,{...item,quantity:1}])
+ }else
+ {
+  setCart((prevState)=>
+  prevState.map((item)=>item.id===id?{...item,quantity:item.quantity+1}:item)
   )
+ }
+ console.log('This is dcart',cart)
 }
+
   return (
     <>
       <h1>Prodcts</h1>
@@ -151,10 +164,8 @@ const addToCart=(id)=>{
         <h1>Cart Item</h1>
         <ul>
           {
-            cart?.map((item,inex)=>
-            <>
-            <li>{item.name}</li>
-            </>
+            cart?.map((item,index)=>
+            <li key={index}>{item.name},{item.quantity}</li>
             )
           }
         </ul>

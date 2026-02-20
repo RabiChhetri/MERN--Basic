@@ -199,6 +199,7 @@ import React, { useState } from 'react'
 import './App.css'
 
 const App = () => {
+  const [selectedCategory, setSelectedCategory] = useState('All')
   const [cart, setCart] = useState([])
   const [products, setProducts] = useState([
     {
@@ -262,7 +263,7 @@ const App = () => {
       description: "Stylish UV-protected sunglasses for everyday wear."
     }
   ])
-
+  const categories=['All',...new Set(products.map((item)=>item.category))]
   
   const handleIncrease=(id)=>{
    const items=products.find((item)=>item.id===id)
@@ -302,15 +303,33 @@ const App = () => {
     }
     
   }
+  const categoryChange=(e)=>{
+    setSelectedCategory(e.target.value)
+  }
+  // const filteredProdct=(selectedCategory)=>{
+  //   selectedCategory==='All'?products:products.filter((item)=>item.category===selectedCategory)
+  // }
+
+  const filteredProdct=selectedCategory==='All'?products:products.filter((item)=>item.category===selectedCategory)
+
+
 
 
   return (
     <div>
      <div className="nice-one">
       <div className="left-one">
+        <div>
+          <h1>Category</h1>
+          <select value={selectedCategory} onChange={categoryChange}>
+            {categories.map((item,index)=>
+            <option key={index}>{item}</option>
+            )}
+          </select>
+        </div>
         <h1>Products</h1>
         <ul>
-          {products?.map((item)=>
+          {filteredProdct.map((item)=>
           <div>
             <div>
               <img src={item.image} alt="item.name" />
@@ -347,7 +366,7 @@ const App = () => {
               <input type="text" readOnly value={item.quantity || 0}/>
               <button onClick={()=>handleIncrease(item.id)}>+</button>
               <div>
-                <button>Add to Cart</button>
+                <button>Processed to Checkout</button>
               </div>
             </div>
           </div>

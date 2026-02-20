@@ -268,7 +268,7 @@ const App = () => {
    const items=products.find((item)=>item.id===id)
    if(items)
     setProducts((prevState)=>
-  prevState.map((item)=>item.id===id?{...item,quantity:item.quantity+1}:item)
+  prevState.map((item)=>item.id===id?item.quantity<item.stock?{...item,quantity:item.quantity+1}:item:item)
     )
   }
 
@@ -310,6 +310,7 @@ const App = () => {
             </div>
             <span>{item.name}</span>
             <span>{item.price}</span>
+            <span>{item.stock}</span>
             <div>
               <button onClick={()=>handleDecrease(item.id)}>-</button>
               <input type="text" readOnly value={item.quantity || 0}/>

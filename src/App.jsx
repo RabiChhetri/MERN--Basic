@@ -91,7 +91,7 @@ const App = () => {
 export default App */
 
 
-import React from 'react'
+/*import React from 'react'
 import { useState } from 'react'
 
 const App = () => {
@@ -130,9 +130,9 @@ const App = () => {
 const addToCart=(id)=>{
   console.log(id)
   const item=products.find((item)=>item.id===id)
-  /*setCart((preState)=>
-  [...preState,item]
-  )*/
+  // setCart((preState)=>
+  // [...preState,item]
+  // )
  console.log(item)
  const isExisting=cart.find((item)=>item.id===id)
  if(!isExisting){
@@ -193,4 +193,103 @@ const handleDeacrese=(id)=>{
   )
 }
 
+export default App*/
+
+import React, { useState } from 'react'
+import './App.css'
+
+const App = () => {
+  const [products, setProducts] = useState([
+    {
+      id: "p001",
+      name: "Wireless Headphones",
+      price: 129.99,
+      category: "Electronics",
+      stock: 2,
+      quantity: 0,
+      image: "https://images.unsplash.com/photo-1518444065439-e933c06ce9cd",
+      description: "Noise cancelling wireless headphones with long battery life."
+    },
+    {
+      id: "p002",
+      name: "Smart Watch",
+      price: 89.99,
+      category: "Wearables",
+      stock: 30,
+      quantity: 0,
+      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+      description: "Track fitness, heart rate, and notifications on the go."
+    },
+    {
+      id: "p003",
+      name: "Running Shoes",
+      price: 69.99,
+      category: "Fashion",
+      stock: 50,
+      quantity: 0,
+      image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+      description: "Lightweight running shoes designed for comfort and speed."
+    },
+    {
+      id: "p004",
+      name: "Backpack",
+      price: 39.99,
+      category: "Accessories",
+      stock: 22,
+      quantity: 0,
+      image: "https://images.unsplash.com/photo-1509762774605-f07235a08f1f",
+      description: "Durable waterproof backpack for travel and daily use."
+    },
+    {
+      id: "p005",
+      name: "Gaming Mouse",
+      price: 49.99,
+      category: "Electronics",
+      stock: 40,
+      quantity: 0,
+      image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7",
+      description: "RGB gaming mouse with adjustable DPI and ergonomic design."
+    },
+    {
+      id: "p006",
+      name: "Sunglasses",
+      price: 24.99,
+      category: "Fashion",
+      stock: 60,
+      quantity: 0,
+      image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083",
+      description: "Stylish UV-protected sunglasses for everyday wear."
+    }
+  ])
+  return (
+    <div>
+     <div className="nice-one">
+      <div className="left-one">
+        <h1>Products</h1>
+        <ul>
+          {products?.map((item)=>
+          <div>
+            <div>
+              <img src={item.image} alt="item.name" />
+            </div>
+            <span>{item.name}</span>
+            <span>{item.price}</span>
+            <div>
+              <button>-</button>
+              <input type="text" readOnly value={item.quantity || 0}/>
+              <button>+</button>
+              <div>
+                <button>Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          )}
+        </ul>
+      </div>
+     </div>
+    </div>
+  )
+}
+
 export default App
+

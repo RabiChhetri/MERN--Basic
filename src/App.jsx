@@ -199,6 +199,7 @@ import React, { useState } from 'react'
 import './App.css'
 
 const App = () => {
+  const [cart, setCart] = useState([])
   const [products, setProducts] = useState([
     {
       id: "p001",
@@ -306,6 +307,31 @@ const App = () => {
           </div>
           )}
         </ul>
+      </div>
+      <div className="right-one">
+        <h1>Cart</h1>
+        {
+          cart.length===0?<>
+          <span>Cart Is Empty</span></>:<>
+          {cart?.map((item)=>
+          <div>
+            <div>
+              <img src={item.image} alt="item.name" />
+            </div>
+            <span>{item.name}</span>
+            <span>{item.price}</span>
+            <div>
+              <button onClick={()=>handleDecrease(item.id)}>-</button>
+              <input type="text" readOnly value={item.quantity || 0}/>
+              <button onClick={()=>handleIncrease(item.id)}>+</button>
+              <div>
+                <button>Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          )}
+          </>
+        }
       </div>
      </div>
     </div>

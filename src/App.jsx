@@ -261,6 +261,13 @@ const App = () => {
       description: "Stylish UV-protected sunglasses for everyday wear."
     }
   ])
+  const handleIncrease=(id)=>{
+   const items=products.find((item)=>item.id===id)
+   if(items)
+    setProducts((prevState)=>
+  prevState.map((item)=>item.id===id?{...item,quantity:item.quantity+1}:item)
+    )
+  }
   return (
     <div>
      <div className="nice-one">
@@ -275,9 +282,9 @@ const App = () => {
             <span>{item.name}</span>
             <span>{item.price}</span>
             <div>
-              <button>-</button>
+              <button >-</button>
               <input type="text" readOnly value={item.quantity || 0}/>
-              <button>+</button>
+              <button onClick={()=>handleIncrease(item.id)}>+</button>
               <div>
                 <button>Add to Cart</button>
               </div>

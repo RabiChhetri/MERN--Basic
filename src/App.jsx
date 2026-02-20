@@ -261,6 +261,8 @@ const App = () => {
       description: "Stylish UV-protected sunglasses for everyday wear."
     }
   ])
+
+  
   const handleIncrease=(id)=>{
    const items=products.find((item)=>item.id===id)
    if(items)
@@ -268,6 +270,18 @@ const App = () => {
   prevState.map((item)=>item.id===id?{...item,quantity:item.quantity+1}:item)
     )
   }
+
+  const handleDecrease=(id)=>{
+    const items=products.find((item)=>item.id===id)
+    if(items)
+    {
+      setProducts((prevState)=>
+      prevState.map((item)=>item.id===id?item.quantity<=0?{...item,quantity:0}:{...item,quantity:item.quantity-1}:item)
+    )
+    }
+  }
+
+
   return (
     <div>
      <div className="nice-one">
@@ -282,7 +296,7 @@ const App = () => {
             <span>{item.name}</span>
             <span>{item.price}</span>
             <div>
-              <button >-</button>
+              <button onClick={()=>handleDecrease(item.id)}>-</button>
               <input type="text" readOnly value={item.quantity || 0}/>
               <button onClick={()=>handleIncrease(item.id)}>+</button>
               <div>

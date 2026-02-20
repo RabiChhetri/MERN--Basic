@@ -282,6 +282,20 @@ const App = () => {
     }
   }
 
+  const addToCart=(id)=>{
+    const items=products.find((item)=>item.id===id)
+    const isExiting=cart.find((item)=>item.id===id)
+    if(!isExiting){
+      setCart((prevState)=>
+      [...prevState,items])
+    }
+    else{
+      setCart((prevState)=>
+      prevState.map((item)=>item.id===id?{...item,quantity:item.quantity+items.quantity}:item))
+    }
+    console.log('the dcart is',cart)
+  }
+
 
   return (
     <div>
@@ -301,7 +315,7 @@ const App = () => {
               <input type="text" readOnly value={item.quantity || 0}/>
               <button onClick={()=>handleIncrease(item.id)}>+</button>
               <div>
-                <button>Add to Cart</button>
+                <button onClick={()=>addToCart(item.id)}>Add to Cart</button>
               </div>
             </div>
           </div>

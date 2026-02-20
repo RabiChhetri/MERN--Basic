@@ -284,7 +284,11 @@ const App = () => {
 
   const addToCart=(id)=>{
     const items=products.find((item)=>item.id===id)
-    const isExiting=cart.find((item)=>item.id===id)
+    if(items.quantity===0){
+      alert('Items cannot be added to cart if the qunity is 0')
+    }
+    else{
+      const isExiting=cart.find((item)=>item.id===id)
     if(!isExiting){
       setCart((prevState)=>
       [...prevState,items])
@@ -295,6 +299,8 @@ const App = () => {
     }
     setProducts((prevState)=>prevState.map((item)=>item.id===id?{...item,stock:item.stock-item.quantity,quantity:0}:item))
     console.log('the dcart is',cart)
+    }
+    
   }
 
 

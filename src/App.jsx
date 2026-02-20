@@ -293,6 +293,7 @@ const App = () => {
       setCart((prevState)=>
       prevState.map((item)=>item.id===id?{...item,quantity:item.quantity+items.quantity}:item))
     }
+    setProducts((prevState)=>prevState.map((item)=>item.id===id?{...item,stock:item.stock-item.quantity,quantity:0}:item))
     console.log('the dcart is',cart)
   }
 

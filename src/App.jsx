@@ -382,7 +382,7 @@ const App = () => {
 export default App*/
 
 
-import React, { useEffect, useState } from 'react'
+/*import React, { useEffect, useState } from 'react'
 
 const App = () => {
   const [count, setCount] = useState(0)
@@ -406,6 +406,31 @@ useEffect(()=>{
     <h1>{count}</h1>
     <button onClick={handleIncrease}>Incresase</button>
     <button onClick={handleDecrease}>Decrese</button>
+    </div>
+  )
+}
+
+export default App()*/
+
+
+import React, { useState } from 'react'
+
+const App = () => {
+  const [name, setName] = useState('')
+  const updateValue=(e)=>{
+    setName(e.target.value)
+  }
+  const handleSubmit=()=>{
+    localStorage.setItem('name',name)
+  }
+
+  return (
+    <div>
+      <input type="text" value={name} onChange={updateValue}/>
+      <br />
+      <button onClick={handleSubmit}>submit</button>
+      <br />
+      <span>My name is  {name || 'khali xa'}</span>
     </div>
   )
 }

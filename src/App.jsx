@@ -196,7 +196,7 @@ const handleDeacrese=(id)=>{
 
 export default App*/
 
-import React, { useEffect, useState } from 'react'
+/*import React, { useEffect, useState } from 'react'
 import './App.css'
 
 const App = () => {
@@ -379,16 +379,13 @@ const App = () => {
   )
 }
 
-export default App
+export default App*/
 
 
-
-
-/*import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const App = () => {
   const [count, setCount] = useState(0)
-
   const handleIncrease=()=>{
     setCount((prevState)=>prevState+1)
   }
@@ -400,47 +397,23 @@ const App = () => {
       setCount((prevState)=>prevState-1)
     }
   }
+useEffect(()=>{
+  document.title=`${count}`
+},[count])
 
-
-  useEffect(()=>{
-    document.title = `${count}`
-  },[count])
-  
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={handleIncrease}>Increase</button>
-      <button onClick={handleDecrease}>Decrese</button>
+    <h1>{count}</h1>
+    <button onClick={handleIncrease}>Incresase</button>
+    <button onClick={handleDecrease}>Decrese</button>
     </div>
   )
 }
 
-export default App*/
+export default App
 
-/*import React, { useEffect, useState } from 'react'
 
-const App = () => {
 
-  const [name, setName] = useState('')
-  const changetheValue=(e)=>{
-    setName(e.target.value)
-  }
-  const handleSubmit=()=>{
-    localStorage.setItem('name',name)
-  }
-  useEffect(()=>{
-    const local=localStorage.getItem('name')
-    setName(local)
-  },[])
-  return (
-    <>
-    <div>
-      <input type="text" value={name} onChange={changetheValue}/>
-      <button onClick={handleSubmit}>Submit My Neme</button>
-    </div>
-    <span>My name is {name || 'Khali xa'}</span>
-    </>
-  )
-}
 
-export default App*/
+
+

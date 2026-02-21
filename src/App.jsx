@@ -413,7 +413,7 @@ useEffect(()=>{
 export default App()*/
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const App = () => {
   const [name, setName] = useState('')
@@ -423,6 +423,10 @@ const App = () => {
   const handleSubmit=()=>{
     localStorage.setItem('name',name)
   }
+  useEffect(()=>{
+    const local=localStorage.getItem('name')
+    setName(local)
+  })
 
   return (
     <div>

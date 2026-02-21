@@ -1,3 +1,4 @@
+
 /*import React, { useState } from 'react'
 
 const App = () => {
@@ -195,7 +196,7 @@ const handleDeacrese=(id)=>{
 
 export default App*/
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 
 const App = () => {
@@ -263,8 +264,9 @@ const App = () => {
       description: "Stylish UV-protected sunglasses for everyday wear."
     }
   ])
+
   const categories=['All',...new Set(products.map((item)=>item.category))]
-  
+
   const handleIncrease=(id)=>{
    const items=products.find((item)=>item.id===id)
    if(items)
@@ -303,17 +305,12 @@ const App = () => {
     }
     
   }
-  const categoryChange=(e)=>{
+  const changeCategory=(e)=>{
     setSelectedCategory(e.target.value)
   }
-  // const filteredProdct=(selectedCategory)=>{
-  //   selectedCategory==='All'?products:products.filter((item)=>item.category===selectedCategory)
-  // }
+  const filteredProduct=selectedCategory==='All'?products:products.filter((item)=>item.category===selectedCategory)
 
-  const filteredProdct=selectedCategory==='All'?products:products.filter((item)=>item.category===selectedCategory)
-
-
-
+  const finalTotal=cart.reduce((accu,curr)=>accu+curr.quantity*curr.price,0)
 
   return (
     <div>
@@ -321,15 +318,17 @@ const App = () => {
       <div className="left-one">
         <div>
           <h1>Category</h1>
-          <select value={selectedCategory} onChange={categoryChange}>
-            {categories.map((item,index)=>
-            <option key={index}>{item}</option>
-            )}
+          <select value={selectedCategory} onChange={changeCategory}>
+            {
+              categories.map((item,index)=>
+              <option key={index}>{item}</option>
+              )
+            }
           </select>
         </div>
         <h1>Products</h1>
         <ul>
-          {filteredProdct.map((item)=>
+          {filteredProduct.map((item)=>
           <div>
             <div>
               <img src={item.image} alt="item.name" />
@@ -371,6 +370,7 @@ const App = () => {
             </div>
           </div>
           )}
+          <span>Total:{finalTotal}</span>
           </>
         }
       </div>
@@ -381,3 +381,66 @@ const App = () => {
 
 export default App
 
+
+
+
+/*import React, { use, useEffect, useState } from 'react'
+
+const App = () => {
+  const [count, setCount] = useState(0)
+
+  const handleIncrease=()=>{
+    setCount((prevState)=>prevState+1)
+  }
+  const handleDecrease=()=>{
+    if(count===0){
+      setCount(0)
+    }
+    else{
+      setCount((prevState)=>prevState-1)
+    }
+  }
+
+
+  useEffect(()=>{
+    document.title = `${count}`
+  },[count])
+  
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={handleIncrease}>Increase</button>
+      <button onClick={handleDecrease}>Decrese</button>
+    </div>
+  )
+}
+
+export default App*/
+
+/*import React, { useEffect, useState } from 'react'
+
+const App = () => {
+
+  const [name, setName] = useState('')
+  const changetheValue=(e)=>{
+    setName(e.target.value)
+  }
+  const handleSubmit=()=>{
+    localStorage.setItem('name',name)
+  }
+  useEffect(()=>{
+    const local=localStorage.getItem('name')
+    setName(local)
+  },[])
+  return (
+    <>
+    <div>
+      <input type="text" value={name} onChange={changetheValue}/>
+      <button onClick={handleSubmit}>Submit My Neme</button>
+    </div>
+    <span>My name is {name || 'Khali xa'}</span>
+    </>
+  )
+}
+
+export default App*/

@@ -92,6 +92,66 @@ const App = () => {
 export default App */
 
 
+/*import React, { useEffect, useState } from 'react'
+
+const App = () => {
+  const [count, setCount] = useState(0)
+  const handleIncrease=()=>{
+    setCount((prevState)=>prevState+1)
+  }
+  const handleDecrease=()=>{
+    if(count===0){
+      setCount(0)
+    }
+    else{
+      setCount((prevState)=>prevState-1)
+    }
+  }
+useEffect(()=>{
+  document.title=`${count}`
+},[count])
+
+  return (
+    <div>
+    <h1>{count}</h1>
+    <button onClick={handleIncrease}>Incresase</button>
+    <button onClick={handleDecrease}>Decrese</button>
+    </div>
+  )
+}
+
+export default App()*/
+
+
+/*import React, { useEffect, useState } from 'react'
+
+const App = () => {
+  const [name, setName] = useState('')
+  const updateValue=(e)=>{
+    setName(e.target.value)
+  }
+  const handleSubmit=()=>{
+    localStorage.setItem('name',name)
+  }
+  useEffect(()=>{
+    const local=localStorage.getItem('name')
+    setName(local)
+  })
+
+  return (
+    <div>
+      <input type="text" value={name} onChange={updateValue}/>
+      <br />
+      <button onClick={handleSubmit}>submit</button>
+      <br />
+      <span>My name is  {name || 'khali xa'}</span>
+    </div>
+  )
+}
+
+export default App*/
+
+
 /*import React from 'react'
 import { useState } from 'react'
 
@@ -382,64 +442,35 @@ const App = () => {
 export default App*/
 
 
-/*import React, { useEffect, useState } from 'react'
+import React, { use, useState } from 'react'
 
 const App = () => {
-  const [count, setCount] = useState(0)
-  const handleIncrease=()=>{
-    setCount((prevState)=>prevState+1)
+  console.log('App Rendering')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const handleSubmit=(e)=>{
+    
+    e.preventDefault()
+    console.log('Form Submitted')
   }
-  const handleDecrease=()=>{
-    if(count===0){
-      setCount(0)
-    }
-    else{
-      setCount((prevState)=>prevState-1)
-    }
-  }
-useEffect(()=>{
-  document.title=`${count}`
-},[count])
-
   return (
     <div>
-    <h1>{count}</h1>
-    <button onClick={handleIncrease}>Incresase</button>
-    <button onClick={handleDecrease}>Decrese</button>
-    </div>
-  )
-}
-
-export default App()*/
-
-
-import React, { useEffect, useState } from 'react'
-
-const App = () => {
-  const [name, setName] = useState('')
-  const updateValue=(e)=>{
-    setName(e.target.value)
-  }
-  const handleSubmit=()=>{
-    localStorage.setItem('name',name)
-  }
-  useEffect(()=>{
-    const local=localStorage.getItem('name')
-    setName(local)
-  })
-
-  return (
-    <div>
-      <input type="text" value={name} onChange={updateValue}/>
-      <br />
-      <button onClick={handleSubmit}>submit</button>
-      <br />
-      <span>My name is  {name || 'khali xa'}</span>
+      <form  onSubmit={handleSubmit}>
+        <h3>Login Form</h3>
+        <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)}/>
+        <br />
+        <br />
+        <input type="text" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+        <br />
+        <button>login</button>
+      </form>
     </div>
   )
 }
 
 export default App
+
+
 
 
 

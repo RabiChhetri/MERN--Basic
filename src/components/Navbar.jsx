@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className='flex justify-center items-center gap-18  px-10 font-bold my-4.5 '>
           {
             navItem.map((item)=>
-            <NavLink to={item.path} className={({isActive})=>isActive?'text-black':'text-white'}>{item.title}</NavLink>
+            <NavLink  key={item.path} to={item.path} className={({isActive})=>isActive?'text-black bg-white rounded px-3 py-1':'text-white'}>{item.title}</NavLink>
             )
           }
         </div>

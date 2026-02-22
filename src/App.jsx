@@ -256,6 +256,37 @@ const handleDeacrese=(id)=>{
 
 export default App*/
 
+
+/*import React, { use, useState } from 'react'
+
+const App = () => {
+  console.log('App Rendering')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const handleSubmit=(e)=>{
+    
+    e.preventDefault()
+    console.log('Form Submitted')
+  }
+  return (
+    <div>
+      <form  onSubmit={handleSubmit}>
+        <h3>Login Form</h3>
+        <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)}/>
+        <br />
+        <br />
+        <input type="text" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+        <br />
+        <button>login</button>
+      </form>
+    </div>
+  )
+}
+
+export default App*/
+
+
+
 /*import React, { useEffect, useState } from 'react'
 import './App.css'
 
@@ -442,29 +473,22 @@ const App = () => {
 export default App*/
 
 
-import React, { use, useState } from 'react'
-
+import React from 'react'
+import{Routes,Route} from 'react-router-dom'
+import Home from './components/Home'
+import Abput from './components/Abput'
+import Contact from './components/Contact'
+import Navbar from './components/Navbar'
 const App = () => {
-  console.log('App Rendering')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const handleSubmit=(e)=>{
-    
-    e.preventDefault()
-    console.log('Form Submitted')
-  }
   return (
-    <div>
-      <form  onSubmit={handleSubmit}>
-        <h3>Login Form</h3>
-        <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)}/>
-        <br />
-        <br />
-        <input type="text" value={password} onChange={(e)=>setPassword(e.target.value)}/>
-        <br />
-        <button>login</button>
-      </form>
-    </div>
+    <>
+    <Navbar/>
+     <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/about' element={<Abput/>}/>
+      <Route path='/contact' element={<Contact/>}/>
+     </Routes> 
+    </>
   )
 }
 

@@ -479,6 +479,7 @@ import Home from './components/Home'
 import Abput from './components/Abput'
 import Contact from './components/Contact'
 import Navbar from './components/Navbar'
+import Login from './components/Login'
 const App = () => {
   return (
     <>
@@ -487,6 +488,7 @@ const App = () => {
       <Route path='/' element={<Home/>}/>
       <Route path='/about' element={<Abput/>}/>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='/login' element={<Login/>}/>
      </Routes> 
     </>
   )

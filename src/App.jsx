@@ -480,6 +480,8 @@ import Abput from './components/Abput'
 import Contact from './components/Contact'
 import Navbar from './components/Navbar'
 import Login from './components/Login'
+import Me from './components/Me'
+import Company from './components/Company'
 const App = () => {
   return (
     <>
@@ -488,6 +490,8 @@ const App = () => {
       <Route path='/' element={<Home/>}/>
       <Route path='/about' element={<Abput/>}/>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='/contact/me' element={<Me/>}/>
+      <Route path='/contact/company' element={<Company/>}/>
       <Route path='/login' element={<Login/>}/>
      </Routes> 
     </>

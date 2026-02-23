@@ -286,12 +286,42 @@ const App = () => {
 export default App*/
 
 
+/*import React from 'react'
+import{Routes,Route} from 'react-router-dom'
+import Home from './components/Home'
+import Abput from './components/Abput'
+import Contact from './components/Contact'
+import Navbar from './components/Navbar'
+import Login from './components/Login'
+import Me from './components/Me'
+import Company from './components/Company'
+const App = () => {
+  return (
+    <>
+    <Navbar/>
+     <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/about' element={<Abput/>}/>
+      <Route path='/contact' element={<Contact/>}/>
+      <Route path='/contact/me' element={<Me/>}/>
+      <Route path='/contact/company' element={<Company/>}/>
+      <Route path='/login' element={<Login/>}/>
+     </Routes> 
+    </>
+  )
+}
 
-/*import React, { useEffect, useState } from 'react'
+export default App*/ 
+
+
+
+import React, { useEffect, useState } from 'react'
 import './App.css'
+import { useSearchParams } from 'react-router-dom'
 
 const App = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const selectedCategory=searchParams.get('category') || 'All'
   const [cart, setCart] = useState([])
   const [products, setProducts] = useState([
     {
@@ -397,7 +427,7 @@ const App = () => {
     
   }
   const changeCategory=(e)=>{
-    setSelectedCategory(e.target.value)
+    setSearchParams({category:e.target.value })
   }
   const filteredProduct=selectedCategory==='All'?products:products.filter((item)=>item.category===selectedCategory)
 
@@ -470,35 +500,9 @@ const App = () => {
   )
 }
 
-export default App*/
-
-
-import React from 'react'
-import{Routes,Route} from 'react-router-dom'
-import Home from './components/Home'
-import Abput from './components/Abput'
-import Contact from './components/Contact'
-import Navbar from './components/Navbar'
-import Login from './components/Login'
-import Me from './components/Me'
-import Company from './components/Company'
-const App = () => {
-  return (
-    <>
-    <Navbar/>
-     <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/about' element={<Abput/>}/>
-      <Route path='/contact' element={<Contact/>}/>
-      <Route path='/contact/me' element={<Me/>}/>
-      <Route path='/contact/company' element={<Company/>}/>
-      <Route path='/login' element={<Login/>}/>
-     </Routes> 
-    </>
-  )
-}
-
 export default App
+
+
 
 
 

@@ -19,6 +19,16 @@ app.get('/get',(req,res)=>{
         message:'Fetch sucessfully'
     })
 })
+app.post('/send',(req,res)=>{
+    const{name,email,phone,password}=req.body
+    res.status(201).json({
+        message:'User Created Sucessfully',
+        name,
+        email,
+        phone,
+        password
+    })
+})
 
 app.listen(5000,()=>{
     console.log('Server is running on the port 5000')

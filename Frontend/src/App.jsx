@@ -10,9 +10,17 @@ const App = () => {
   const updateValue=(e)=>{
     setFormData((prevState)=>({...prevState,[e.target.name]:e.target.value}))
   }
-  const handleSubmit=(e)=>{
+  const handleSubmit=async(e)=>{
     console.log('Form Submitted')
     e.preventDefault()
+    const response=await fetch("http//:localhost:5000/send",{
+      method:'POST',
+      headers:{
+        'Content-type':'application/json'
+      },
+      body:JSON.stringify(formData)
+    })
+    console.log(response)
   }
   return (
     <div>

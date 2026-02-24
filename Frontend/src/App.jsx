@@ -1,20 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const App = () => {
+  const [formData, setFormData] = useState({
+    name:'',
+    email:'',
+    phone:'',
+    password:''
+  })
+  const updateValue=(e)=>{
+    setFormData((prevState)=>({...prevState,[e.target.name]:e.target.value}))
+  }
+  const handleSubmit=(e)=>{
+    console.log('Form Submitted')
+    e.preventDefault()
+  }
   return (
     <div>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <span>Name:</span>
-        <input type="text" placeholder='Enter your name'/>
+        <input type="text" name="name" placeholder='Enter your name' value={formData.name} onChange={updateValue}/>
         <br />
         <span>Email:</span>
-        <input type="email" placeholder='Enter your name'/>
+        <input type="email" name="email" placeholder='Enter your name' value={formData.email} onChange={updateValue}/>
         <br />
         <span>Phone:</span>
-        <input type="number" placeholder='Enter your phone'/>
+        <input type="number" name="phone" placeholder='Enter your phone' value={formData.phone} onChange={updateValue}/>
         <br />
         <span>password:</span>
-        <input type="password" placeholder='Enter your password'/>
+        <input type="text" name="password" placeholder='Enter your password' value={formData.password} onChange={updateValue}/>
         <br />
         <button>Submit</button>
       </form>

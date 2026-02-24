@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { registerUser } from './Apis/authApi'
 const App = () => {
   const [formData, setFormData] = useState({
     name:'',
@@ -7,23 +7,19 @@ const App = () => {
     phone:'',
     password:''
   })
+  const [display, setDisplay] = useState({})
   const updateValue=(e)=>{
     setFormData((prevState)=>({...prevState,[e.target.name]:e.target.value}))
   }
   const handleSubmit=async(e)=>{
     console.log('Form Submitted')
     e.preventDefault()
-    const response=await fetch('http://localhost:3000/send',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify(formData)
-    })
-    const data=await response.json()
-    console.log(data)
+   const result=await registerUser(formData)
+   console.log(result)
+   setDisplay(result?.data)
   }
   return (
+    <>
     <div>
       <form onSubmit={handleSubmit}>
         <span>Name:</span>
@@ -40,7 +36,15 @@ const App = () => {
         <br />
         <button>Submit</button>
       </form>
+     <ul>
+      <h2>
+        {Object.entries(display).map(([key,value],index)=>
+        <li key={index}>{key}:{value}</li>
+        )}
+      </h2>
+     </ul>
     </div>
+    </>
   )
 }
 

@@ -4,7 +4,7 @@ const cors=require('cors')
 const corsOption={
     origin:['http://localhost:5173'],
     methods:['GET','POST','PUT','DELETE'],
-    allowedHeaders:['Content-Type','Auhtorization'],
+    allowedHeaders:['Content-Type','Authorization'],
     credentials:true
 }
 const app=express()
@@ -26,13 +26,16 @@ app.get('/get',(req,res)=>{
     })
 })
 app.post('/send',(req,res)=>{
+    console.log(req.body)
     const{name,email,phone,password}=req.body
     res.status(201).json({
         message:'User Created Sucessfully',
-        name,
-        email,
-        phone,
-        password
+        data:{
+            name,
+            email,
+            phone,
+            password
+        }
     })
 })
 

@@ -13,14 +13,15 @@ const App = () => {
   const handleSubmit=async(e)=>{
     console.log('Form Submitted')
     e.preventDefault()
-    const response=await fetch("http://localhost:5000/send",{
+    const response=await fetch('http://localhost:3000/send',{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
       },
       body:JSON.stringify(formData)
     })
-    console.log(response)
+    const data=await response.json()
+    console.log(data)
   }
   return (
     <div>

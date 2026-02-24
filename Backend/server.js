@@ -1,9 +1,16 @@
 const express=require('express')
+const cors=require('cors')
 
 
 const app=express()
+const corsOption={
+    origin:['http://localhost/5173'],
+    methods:['GET','POST','PUT','DELETE'],
+    allowedHeaders:['Content-Type','Authorization'],
+    credentials:true
+}
 
-
+app.use(cors(corsOption))
 app.use(express.json())
 
 app.post('/post',(req,res)=>{

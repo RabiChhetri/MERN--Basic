@@ -2,10 +2,10 @@ const multer=require('multer')
 
 const storage=multer.memoryStorage()
 
-const upload={
+const upload=multer({
     storage:storage,
     limits:{
         fullSize:50*1024*1024
     }
-}
+})
 module.exports=upload

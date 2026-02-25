@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { registerUser } from './Apis/authApi'
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -16,15 +17,8 @@ const App = () => {
   const handleSubmit=async(e)=>{
     e.preventDefault()
     console.log('Form Submitted')
-    const response=await fetch('http://localhost:3000/api/auth/post',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify(formData)
-    })
-    const result=await response.json()
-    console.log(result)
+   const result=await registerUser(formData)
+   console.log(result)
   }
 
 

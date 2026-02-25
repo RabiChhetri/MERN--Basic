@@ -1,14 +1,24 @@
 require('dotenv').config()
 const express=require('express')
 const mongoose=require('mongoose')
+const cors=require('cors')
 const userRouter=require('./router/userRouter')
 const dns=require('dns')
 dns.setServers(['8.8.8.8','8.8.4.4'])
+
 const app=express()
+const corsOption={
+    origin:['http://localhost:5173'],
+    methods:['POST','GET','PUT','DELETE'],
+    allowedHeaders:['Content-Type','Authorization'],
+    credentials:true
+}
 
 app.use(express.json())
+app.use(cors(corsOption))
 
 app.use('/api/auth',userRouter)
+
 
 mongoose.connect(process.env.MONGODB_URI)
 .then(()=>{

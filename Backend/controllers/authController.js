@@ -1,13 +1,6 @@
 const registerUser=async(req,res)=>{
     try {
-        const{name,email,phone,password}=req.body
-        res.status(201).json({
-            message:'User Created Sucessfully',
-            name,
-            email,
-            phone,
-            password
-        })
+        console.log(req.body)
     } catch (error) {
         console.log('Internal Error',error)
     }

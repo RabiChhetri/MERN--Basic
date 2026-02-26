@@ -50,11 +50,12 @@ const App = () => {
         <input type="number" name="phone" placeholder='Enter your phone number' value={formData.phone} onChange={updateValue}/>
         <br />
         <span>Password:</span>
-        <input type="password" name="password" placeholder='Enter your password' value={formData.password} onChange={updateValue}/>
+        <input type="text" name="password" placeholder='Enter your password' value={formData.password} onChange={updateValue}/>
         <br />
         <button>Submit</button>
       </form >
-      <h1>Login</h1>
+      <br />
+      <br />
       <form onSubmit={handleLogin}>
         <span>email:</span>
         <input type="text" placeholder='Enter your name' name='email' value={loginData.email} onChange={updateLogin}/>

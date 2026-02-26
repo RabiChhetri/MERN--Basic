@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { registerUser } from './Apis/authApi'
+import {  registerUser } from './Apis/authApi'
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ const App = () => {
     phone:'',
     password:''
   })
+  
+
   const updateValue=(e)=>{
     setFormData((prevState)=>(
       {...prevState,[e.target.name]:e.target.value}
@@ -35,10 +37,11 @@ const App = () => {
         <input type="number" name="phone" placeholder='Enter your phone number' value={formData.phone} onChange={updateValue}/>
         <br />
         <span>Password:</span>
-        <input type="text" name="password" placeholder='Enter your password' value={formData.password} onChange={updateValue}/>
+        <input type="password" name="password" placeholder='Enter your password' value={formData.password} onChange={updateValue}/>
         <br />
         <button>Submit</button>
       </form>
+
     </div>
   )
 }

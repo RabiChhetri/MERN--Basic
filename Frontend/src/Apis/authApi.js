@@ -4,14 +4,15 @@ export const registerUser=async(formData)=>{
     Object.entries(formData).map(([key,value])=>{
         niceData.append(key,value)
     })
-    // niceData.forEach((key,value)=>{
-    //     console.log(key,":",value)
-    // })
+    niceData.forEach((key,value)=>{
+        console.log(key,":",value)
+    })
     
     try {
       const response=await fetch('http://localhost:3000/api/auth/post',{
       method:'POST',
-      body:JSON.stringify(formData)
+      body:niceData
+    
     })
     const data=await response.json()
     return data

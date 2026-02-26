@@ -1,8 +1,6 @@
-const registerUser=async(req,res)=>{
-    try {
-        console.log(req.body)
-    } catch (error) {
-        console.log('Internal Error',error)
-    }
+async function registerUser(req,res) {
+    console.log(req.body)
+    
 }
+
 module.exports={registerUser}

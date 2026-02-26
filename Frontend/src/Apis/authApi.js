@@ -20,3 +20,23 @@ export const registerUser=async(formData)=>{
         console.log(error)
     }
 }
+
+export const loginUser=async(loginData)=>{
+    const niceData=new FormData()
+    Object.entries(loginData).map(([key,value])=>{
+        niceData.append(key,value)
+    })
+    niceData.forEach((key,value)=>{
+        console.log(key,":",value)
+    })
+    try {
+        const response=await fetch('http://localhost:3000/api/auth/login',{
+            method:'POST',
+            body:niceData
+        })
+        const data=await response.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}

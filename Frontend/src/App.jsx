@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import {  registerUser } from './Apis/authApi'
+import {  registerUser,loginUser } from './Apis/authApi'
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +21,8 @@ const App = () => {
   const handleLogin=async(e)=>{
     console.log('Form Login')
     e.preventDefault()
+    const result=await loginUser(loginData)
+    console.log(result)
   }
   const updateValue=(e)=>{
     setFormData((prevState)=>(

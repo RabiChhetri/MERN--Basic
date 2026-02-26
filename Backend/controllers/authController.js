@@ -1,4 +1,6 @@
 const userModel=require('../models/user.model')
+
+
 async function registerUser(req,res) {
    try {
      const {name,email,phone,password}=req.body
@@ -22,4 +24,8 @@ async function registerUser(req,res) {
     
 }
 
-module.exports={registerUser}
+async function loginUser(req,res) {
+    
+}
+
+module.exports={registerUser,loginUser}

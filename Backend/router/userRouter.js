@@ -6,6 +6,8 @@ const router=express.Router()
 
 router.post('/post', upload.none(), authController.registerUser)
 
+router.post('/login',upload.none(),authController.loginUser)
+
 
 
 module.exports=router

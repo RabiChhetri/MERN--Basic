@@ -9,8 +9,19 @@ const App = () => {
     phone:'',
     password:''
   })
-  
-
+  const [loginData, setLoginData] = useState({
+    email:'',
+    password:''
+  })
+  const updateLogin=(e)=>{
+    setLoginData((prevState)=>({
+      ...prevState,[e.target.name]:e.target.value
+    }))
+  }
+  const handleLogin=async(e)=>{
+    console.log('Form Login')
+    e.preventDefault()
+  }
   const updateValue=(e)=>{
     setFormData((prevState)=>(
       {...prevState,[e.target.name]:e.target.value}
@@ -40,8 +51,17 @@ const App = () => {
         <input type="password" name="password" placeholder='Enter your password' value={formData.password} onChange={updateValue}/>
         <br />
         <button>Submit</button>
+      </form >
+      <h1>Login</h1>
+      <form onSubmit={handleLogin}>
+        <span>email:</span>
+        <input type="text" placeholder='Enter your name' name='email' value={loginData.email} onChange={updateLogin}/>
+        <br />
+        <span>password:</span>
+        <input type="text" placeholder='Enter your password' name='password' value={loginData.password} onChange={updateLogin}/>
+        <br />
+        <button>login</button>
       </form>
-
     </div>
   )
 }

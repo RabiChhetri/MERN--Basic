@@ -36,6 +36,8 @@ async function loginUser(req, res) {
         password,
         isUserAlreadyExists.password,
       );
+      const token=await isUserAlreadyExists.generateToken()
+      console.log(token)
       if (isValidPassword) {
         return res.status(200).json({
           message: "Login Sucessfully",

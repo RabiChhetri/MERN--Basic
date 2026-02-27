@@ -63,4 +63,12 @@ async function loginUser(req, res) {
   }
 }
 
-module.exports = { registerUser, loginUser };
+async function getUserDetails(req,res) {
+  try {
+    
+  } catch (error) {
+    console.log('Internal Server error',error)
+  }
+}
+
+module.exports = { registerUser, loginUser,getUserDetails };

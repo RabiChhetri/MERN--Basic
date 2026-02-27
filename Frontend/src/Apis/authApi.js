@@ -34,6 +34,7 @@ export const loginUser=async(loginData)=>{
         const response=await fetch('http://localhost:3000/api/auth/login',{
             method:'POST',
             body:niceData,
+            credentials:'include'
         })
         const data=await response.json()
         return data

@@ -9,7 +9,7 @@ router.post('/post', upload.none(),authController.registerUser)
 
 router.post('/login',upload.none(),authController.loginUser)
 
-router.get('/getUserDetails',authMiddlewares.authMiddleware,authController.getUserDetails)
+router.get('/getUserData',authMiddlewares.authMiddleware,authController.getUserDetails)
 
 
 module.exports=router

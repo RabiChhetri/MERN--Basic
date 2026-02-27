@@ -42,5 +42,17 @@ export const loginUser=async(loginData)=>{
         console.log(error)
     }
 }
+export const getUserDetails=async()=>{
+    try {
+        const response=await fetch('hhtp://localhost:3000/api/auth/getUserData',{
+        method:'GET',
+        credentials:'include'
+    })
+    const data=await response.json()
+    return data
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 

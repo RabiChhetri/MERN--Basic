@@ -13,6 +13,7 @@ const App = () => {
     email:'',
     password:''
   })
+  const [display, setDisplay] = useState()
   const updateLogin=(e)=>{
     setLoginData((prevState)=>({
       ...prevState,[e.target.name]:e.target.value
@@ -23,6 +24,8 @@ const App = () => {
     e.preventDefault()
     const result=await loginUser(loginData)
     console.log(result)
+    console.log(result.isUserAlreadyExists.name)
+    setDisplay(result.isUserAlreadyExists.name)
   }
   const updateValue=(e)=>{
     setFormData((prevState)=>(
@@ -65,7 +68,7 @@ const App = () => {
         <br />
         <button>login</button>
       </form>
-      
+      <h1>{display}</h1>
     </div>
   )
 }

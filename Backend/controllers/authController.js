@@ -1,5 +1,5 @@
 const userModel = require("../models/user.model");
-const bcrypt=require('bcryptjs')
+const bcrypt = require("bcryptjs");
 async function registerUser(req, res) {
   try {
     const { name, email, phone, password } = req.body;
@@ -15,13 +15,13 @@ async function registerUser(req, res) {
       phone,
       password,
     });
-    await newUser.save()
-    const token=await newUser.generateToken()
-    console.log(token)
-    res.cookie("token",token,{
-      httpOnly:true,
-      sameSite:"strict"
-    })
+    await newUser.save();
+    const token = await newUser.generateToken();
+    console.log(token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "strict",
+    });
     return res.status(201).json({
       message: "Register successfully successfully",
     });
@@ -40,16 +40,16 @@ async function loginUser(req, res) {
         password,
         isUserAlreadyExists.password,
       );
-      const token=await isUserAlreadyExists.generateToken()
-      console.log(token)
-      res.cookie("token",token,{
-        httpOnly:true,
-        sameSite:'strict'
-      })
+      const token = await isUserAlreadyExists.generateToken();
+      console.log(token);
+      res.cookie("token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+      });
       if (isValidPassword) {
         return res.status(200).json({
           message: "Login Sucessfully",
-          isUserAlreadyExists
+          isUserAlreadyExists,
         });
       }
 
@@ -62,7 +62,5 @@ async function loginUser(req, res) {
     res.status(500).json({ message: "Server Error" });
   }
 }
-
-
 
 module.exports = { registerUser, loginUser };

@@ -44,7 +44,7 @@ export const loginUser=async(loginData)=>{
 }
 export const getUserDetails=async()=>{
     try {
-        const response=await fetch('hhtp://localhost:3000/api/auth/getUserData',{
+        const response=await fetch('http://localhost:3000/api/auth/getUserData',{
         method:'GET',
         credentials:'include'
     })

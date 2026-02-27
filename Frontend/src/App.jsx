@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import {  registerUser,loginUser } from './Apis/authApi'
+import {  registerUser,loginUser, getUserDetails } from './Apis/authApi'
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -38,7 +38,12 @@ const App = () => {
    const result=await registerUser(formData)
    console.log(result)
   }
-
+  useEffect(()=>{
+    async function verifyData() {
+      const result=await getUserDetails()
+    }
+    verifyData()
+  })
 
   return (
     <div>

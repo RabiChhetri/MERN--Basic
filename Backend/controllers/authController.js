@@ -18,6 +18,10 @@ async function registerUser(req, res) {
     await newUser.save()
     const token=await newUser.generateToken()
     console.log(token)
+    res.cookie("token",token,{
+      httpOnly:true,
+      sameSite:"strict"
+    })
     return res.status(201).json({
       message: "Register successfully successfully",
     });

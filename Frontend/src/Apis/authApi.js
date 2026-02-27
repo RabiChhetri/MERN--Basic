@@ -12,6 +12,7 @@ export const registerUser=async(formData)=>{
       const response=await fetch('http://localhost:3000/api/auth/post',{
       method:'POST',
       body:niceData,
+      credentials:'include'
     
     })
     const data=await response.json()

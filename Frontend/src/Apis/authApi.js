@@ -11,7 +11,7 @@ export const registerUser=async(formData)=>{
     try {
       const response=await fetch('http://localhost:3000/api/auth/post',{
       method:'POST',
-      body:niceData
+      body:niceData,
     
     })
     const data=await response.json()
@@ -32,7 +32,7 @@ export const loginUser=async(loginData)=>{
     try {
         const response=await fetch('http://localhost:3000/api/auth/login',{
             method:'POST',
-            body:niceData
+            body:niceData,
         })
         const data=await response.json()
         return data
@@ -40,3 +40,5 @@ export const loginUser=async(loginData)=>{
         console.log(error)
     }
 }
+
+

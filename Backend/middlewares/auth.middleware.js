@@ -19,11 +19,11 @@ async function authMiddleware(req,res,next) {
                 req.isUser=userData
                 return next()
             }
-            res.status(404).json({
+             res.status(404).json({
                 message:'User not found'
             })
         }
-        res.status(404).json({
+         res.status(404).json({
             message:'User is not access'
         })
     } catch (error) {

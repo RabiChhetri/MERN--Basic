@@ -66,7 +66,11 @@ async function loginUser(req, res) {
 async function getUserDetails(req,res) {
   try {
     console.log('Hello')
-    console.log(req.isUser)
+    // console.log(req.isUser)
+    res.status(200).json({
+      message:'User fetched sucessfully',
+      user:req.isUser
+    })
   } catch (error) {
     console.log('Internal Server error',error)
   }

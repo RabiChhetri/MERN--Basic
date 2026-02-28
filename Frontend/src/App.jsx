@@ -41,6 +41,7 @@ const App = () => {
     async function verifyData() {
       const result=await getUserDetails()
       console.log(result)
+      setDisplay(result.user.name)
     }
    
     verifyData()

@@ -5,6 +5,7 @@ const cors=require('cors')
 const userRouter=require('./router/userRouter')
 const dns=require('dns')
 dns.setServers(['8.8.8.8','8.8.4.4'])
+const cookieParser=require('cookie-parser')
 
 const app=express()
 const corsOption={
@@ -16,6 +17,7 @@ const corsOption={
 
 app.use(express.json())
 app.use(cors(corsOption))
+app.use(cookieParser())
 
 app.use('/api/auth',userRouter)
 

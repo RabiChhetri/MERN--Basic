@@ -13,8 +13,9 @@ const App = () => {
     email:'',
     password:''
   })
+  const [loggedIn, setLoggedIn] = useState()
   const [display, setDisplay] = useState()
-  const updateLogin=(e)=>{
+    const updateLogin=(e)=>{
     setLoginData((prevState)=>({
       ...prevState,[e.target.name]:e.target.value
     }))
@@ -25,7 +26,6 @@ const App = () => {
     const result=await loginUser(loginData)
     console.log(result)
     console.log(result.isUserAlreadyExists.name)
-    setDisplay(result.isUserAlreadyExists.name)
   }
   const updateValue=(e)=>{
     setFormData((prevState)=>(
@@ -42,6 +42,7 @@ const App = () => {
     async function verifyData() {
       const result=await getUserDetails()
     }
+   
     verifyData()
   })
 

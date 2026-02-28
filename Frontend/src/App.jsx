@@ -15,6 +15,10 @@ const App = () => {
   })
   const [loggedIn, setLoggedIn] = useState()
   const [display, setDisplay] = useState()
+  const [image, setImage] = useState()
+  const updateImage=(e)=>{
+    console.log(e.target.files[0])
+  }
     const updateLogin=(e)=>{
     setLoginData((prevState)=>({
       ...prevState,[e.target.name]:e.target.value
@@ -40,12 +44,10 @@ const App = () => {
   useEffect(()=>{
     async function verifyData() {
       const result=await getUserDetails()
-      console.log(result)
-      setDisplay(result.user.name)
+      setDisplay(result?.user?.name)
     }
-   
     verifyData()
-  })
+  },[])
 
   return (
     <div>
@@ -66,6 +68,7 @@ const App = () => {
       </form >
       <br />
       <br />
+      <input type="file" value={image} onChange={updateImage}/>
       <form onSubmit={handleLogin}>
         <span>email:</span>
         <input type="text" placeholder='Enter your name' name='email' value={loginData.email} onChange={updateLogin}/>
@@ -75,7 +78,7 @@ const App = () => {
         <br />
         <button>login</button>
       </form>
-      <h1>{display?<>You are logged in</>:<>You are not logged in</>}</h1>
+      <h1>{display} <span>{display?<>You are logged in</>:<>You are not logged in</>}</span></h1>
     </div>
   )
 }

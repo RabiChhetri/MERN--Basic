@@ -36,7 +36,6 @@ const App = () => {
     e.preventDefault()
     console.log('Form Submitted')
    const result=await registerUser(formData)
-   console.log(result)
   }
   useEffect(()=>{
     async function verifyData() {

@@ -15,7 +15,17 @@ async function authMiddleware(req,res,next) {
         if(userId){
             const userData=await userModel.findOne({_id:userId},"-password")
             console.log(userData)
+            if(userData){
+                req.isUser=userData
+                return next()
+            }
+            res.status(404).json({
+                message:'User not found'
+            })
         }
+        res.status(404).json({
+            message:'User is not access'
+        })
     } catch (error) {
         console.log('Internal server error',error)
     }

@@ -13,7 +13,7 @@ async function authMiddleware(req,res,next) {
         const userId=decoded.userId
         console.log(userId)
         if(userId){
-            const userData=await userModel.findOne({_id:userId})
+            const userData=await userModel.findOne({_id:userId},"-password")
             console.log(userData)
         }
     } catch (error) {

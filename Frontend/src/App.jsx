@@ -41,6 +41,7 @@ const App = () => {
   useEffect(()=>{
     async function verifyData() {
       const result=await getUserDetails()
+      console.log(result)
     }
    
     verifyData()

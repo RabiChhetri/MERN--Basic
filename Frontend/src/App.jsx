@@ -75,7 +75,7 @@ const App = () => {
         <br />
         <button>login</button>
       </form>
-      <h1>{display}</h1>
+      <h1>{display?<>You are logged in</>:<>You are not logged in</>}</h1>
     </div>
   )
 }

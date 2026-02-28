@@ -5,10 +5,13 @@ async function authMiddleware(req,res,next) {
         const token=req.cookies.token
         console.log(token)
         if(!token){
-            res.status(201).json({
-                message:'Unauthorized,Token is missing'
+            res.status(401).json({
+                message:'Unathorized,token is missing'
             })
         }
+        const decoded=jwt.verify(token,process.env.JWT_SECRET)
+        const userId=decoded.userId
+        console.log(userId)
     } catch (error) {
         console.log('Internal server error',error)
     }

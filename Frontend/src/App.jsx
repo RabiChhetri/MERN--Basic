@@ -16,8 +16,12 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState()
   const [display, setDisplay] = useState()
   const [image, setImage] = useState()
+  const [imageUrl, setImageUrl] = useState()
   const updateImage=(e)=>{
     console.log(e.target.files[0])
+    const choosenFiles=e.target.files[0]
+    const imagesUrl=URL.createObjectURL(choosenFiles)
+    setImageUrl(imagesUrl)
   }
     const updateLogin=(e)=>{
     setLoginData((prevState)=>({
@@ -69,6 +73,7 @@ const App = () => {
       <br />
       <br />
       <input type="file" value={image} onChange={updateImage}/>
+      {imageUrl?<> <img src={imageUrl}/> </>:<>Xaina</>}
       <form onSubmit={handleLogin}>
         <span>email:</span>
         <input type="text" placeholder='Enter your name' name='email' value={loginData.email} onChange={updateLogin}/>

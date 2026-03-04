@@ -67,9 +67,9 @@ const Register = () => {
         <h1>Create Account</h1>
         <p>Join us and start shopping today!</p>
 
-        <input type="text" placeholder='Enter your username' {...register('username')}/>
-        <input type="text" placeholder='Enter your email' {...register('email')}/>
-        <input type="text" placeholder='Enter your password' {...register('password')}/>
+        <input type="text" placeholder='Enter your username' {...register('username',{required:true})}/>
+        <input type="text" placeholder='Enter your email' {...register('email',{required:TextTrackCue})}/>
+        <input type="text" placeholder='Enter your password' {...register('password',{required:true})}/>
 
         <button type='submit'>Register</button>
         <span className="extra">Already have an account? <a>Login</a></span>

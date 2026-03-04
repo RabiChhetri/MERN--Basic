@@ -23,7 +23,7 @@
 //             const result=await registerUser(formData)
 //             console.log(result)
 //             router('/');
-            
+
 //         }
 //         else{
 //             console.log('Password is not match Ma   tch')
@@ -52,43 +52,99 @@
 
 // export default Register;
 
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 
 const Register = () => {
-  const {register,handleSubmit, formState: { errors }}=useForm({
-    mode:"all"
-  })
-  const handleLoginForm=()=>{
-    console.log('Form Submmitted')
-    
-    
-  }
+  const {
+    register,
+    handleSubmit,watch,
+    formState: { errors },
+  } = useForm({
+    mode: "all",
+  });
+  const password=watch('password')
+  const handleLoginForm = () => {
+    console.log("Form Submmitted");
+  };
   return (
     <div className="register-container">
-      <form action="" className="register-card" onSubmit={handleSubmit(handleLoginForm)}>
+      <form
+        action=""
+        className="register-card"
+        onSubmit={handleSubmit(handleLoginForm)}
+      >
         <h1>Create Account</h1>
         <p>Join us and start shopping today!</p>
 
-        <input type="text" placeholder='Enter your username' {...register('username',{required:{value:true,message:'Username is required'}})}/>
-        {errors?.username && <p className="error-message">{errors.username.message}</p>}
-        <input type="text" placeholder='Enter your email' {...register('email',{required:{value:true,message:'Email is required'}, pattern: {
-      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: "Enter a valid email address"
-    }})}/>
-        {errors?.email && <p className="error-message">{errors.email.message}</p>}
-        <input type="text" placeholder='Enter your password' {...register('password',{required:{value:true,message:'Password must be required'},minLength:{value:6,message:'Password Must be atleast 6 characters'},maxLength:{value:10,message:'Password cant be more than 1 characters'},pattern: {
-      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,10}$/,
-      message: "Password must contain uppercase, lowercase and number"
-    }})}/>
-        {errors?.password && <p className="error-message">{errors.password.message}</p>}
+        <input
+          type="text"
+          placeholder="Enter your username"
+          {...register("username", {
+            required: { value: true, message: "Username is required" },
+          })}
+        />
+        {errors?.username && (
+          <p className="error-message">{errors.username.message}</p>
+        )}
+        <input
+          type="text"
+          placeholder="Enter your email"
+          {...register("email", {
+            required: { value: true, message: "Email is required" },
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Enter a valid email address",
+            },
+          })}
+        />
+        {errors?.email && (
+          <p className="error-message">{errors.email.message}</p>
+        )}
+        <input
+          type="password"
+          placeholder="Enter your password"
+          {...register("password", {
+            required: { value: true, message: "Password must be required" },
+            minLength: {
+              value: 6,
+              message: "Password Must be atleast 6 characters",
+            },
+            maxLength: {
+              value: 10,
+              message: "Password cant be more than 1 characters",
+            },
+            pattern: {
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,10}$/,
+              message: "Password must contain uppercase, lowercase and number",
+            },
+          })}
+        />
+        {errors?.password && (
+          <p className="error-message">{errors.password.message}</p>
+        )}
+        <input
+          type="password"
+          placeholder="Confirm your password"
+          {...register('confirmPassword',{validate:(value)=>{
+            if(value==password){
+              return true
+            }
+            return "Confirm password don't match"
+          }})}
+        />
+        {errors?.confirmPassword && (
+          <p className="error-message">{errors.confirmPassword.message}</p>
+        )}
 
-        <button type='submit'>Register</button>
-        <span className="extra">Already have an account? <Link to='/login'>Login</Link> </span>
+        <button type="submit">Register</button>
+        <span className="extra">
+          Already have an account? <Link to="/login">Login</Link>{" "}
+        </span>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

@@ -57,9 +57,11 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form"
 
 const Register = () => {
-  const {register,handleSubmit, formState: { errors }}=useForm()
-  const handleLoginForm=(e)=>{
-    console.log('Form Submmitted',e)
+  const {register,handleSubmit, formState: { errors }}=useForm({
+    mode:"all"
+  })
+  const handleLoginForm=()=>{
+    console.log('Form Submmitted')
     
     
   }
@@ -76,14 +78,14 @@ const Register = () => {
       message: "Enter a valid email address"
     }})}/>
         {errors?.email && <p className="error-message">{errors.email.message}</p>}
-        <input type="text" placeholder='Enter your password' {...register('password',{required:{value:true,message:'Password must be required'},minLength:{value:6,message:'Password Must be atleast 6 characters'},maxLength:{value:12,message:'Password cant be more than 10 characters'},pattern: {
-      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,8}$/,
+        <input type="text" placeholder='Enter your password' {...register('password',{required:{value:true,message:'Password must be required'},minLength:{value:6,message:'Password Must be atleast 6 characters'},maxLength:{value:10,message:'Password cant be more than 1 characters'},pattern: {
+      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,10}$/,
       message: "Password must contain uppercase, lowercase and number"
     }})}/>
         {errors?.password && <p className="error-message">{errors.password.message}</p>}
 
         <button type='submit'>Register</button>
-        <span className="extra">Already have an account? <a>Login</a></span>
+        <span className="extra">Already have an account? <Link to='/login'>Login</Link> </span>
       </form>
     </div>
   )

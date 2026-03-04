@@ -1,90 +1,21 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import {  registerUser,loginUser, getUserDetails } from './Apis/authApi'
-
+import React from 'react'
+import{Routes,Route} from 'react-router-dom'
+import Home from './components/Home'
+import Product from './components/Product'
+import Login from './components/Login'
+import Register from './components/Register'
+import Navbar from './components/Navbar'
 const App = () => {
-  const [formData, setFormData] = useState({
-    name:'',
-    email:'',
-    phone:'',
-    password:''
-  })
-  const [loginData, setLoginData] = useState({
-    email:'',
-    password:''
-  })
-  const [loggedIn, setLoggedIn] = useState()
-  const [display, setDisplay] = useState()
-  const [image, setImage] = useState()
-  const [imageUrl, setImageUrl] = useState()
-  const updateImage=(e)=>{
-    console.log(e.target.files[0])
-    const choosenFiles=e.target.files[0]
-    const imagesUrl=URL.createObjectURL(choosenFiles)
-    setImageUrl(imagesUrl)
-  }
-    const updateLogin=(e)=>{
-    setLoginData((prevState)=>({
-      ...prevState,[e.target.name]:e.target.value
-    }))
-  }
-  const handleLogin=async(e)=>{
-    console.log('Form Login')
-    e.preventDefault()
-    const result=await loginUser(loginData)
-    console.log(result)
-    console.log(result.isUserAlreadyExists.name)
-  }
-  const updateValue=(e)=>{
-    setFormData((prevState)=>(
-      {...prevState,[e.target.name]:e.target.value}
-    ))
-  }
-  const handleSubmit=async(e)=>{
-    e.preventDefault()
-    console.log('Form Submitted')
-   const result=await registerUser(formData)
-  }
-  useEffect(()=>{
-    async function verifyData() {
-      const result=await getUserDetails()
-      setDisplay(result?.user?.name)
-    }
-    verifyData()
-  },[])
-
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <span>Name:</span>
-        <input type="text" name="name" placeholder='Enter your name' value={formData.name} onChange={updateValue}/>
-        <br />
-        <span>Email:</span>
-        <input type="email" name="email" placeholder='Enter your email'value={formData.email} onChange={updateValue}/>
-        <br />
-        <span>Phone:</span>
-        <input type="number" name="phone" placeholder='Enter your phone number' value={formData.phone} onChange={updateValue}/>
-        <br />
-        <span>Password:</span>
-        <input type="text" name="password" placeholder='Enter your password' value={formData.password} onChange={updateValue}/>
-        <br />
-        <button>Submit</button>
-      </form >
-      <br />
-      <br />
-      <input type="file" value={image} onChange={updateImage}/>
-      {imageUrl?<> <img src={imageUrl}/> </>:<>Xaina</>}
-      <form onSubmit={handleLogin}>
-        <span>email:</span>
-        <input type="text" placeholder='Enter your name' name='email' value={loginData.email} onChange={updateLogin}/>
-        <br />
-        <span>password:</span>
-        <input type="text" placeholder='Enter your password' name='password' value={loginData.password} onChange={updateLogin}/>
-        <br />
-        <button>login</button>
-      </form>
-      <h1>{display} <span>{display?<>You are logged in</>:<>You are not logged in</>}</span></h1>
-    </div>
+    <>
+    <Navbar/>
+    <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/product' element={<Product/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/register' element={<Register/>}/>
+    </Routes>
+    </>
   )
 }
 

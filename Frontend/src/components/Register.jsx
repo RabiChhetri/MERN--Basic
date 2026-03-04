@@ -23,10 +23,10 @@
 //             const result=await registerUser(formData)
 //             console.log(result)
 //             router('/');
-
+            
 //         }
 //         else{
-//             console.log('Password is not match Ma   tch')
+//             console.log('Password is not match Match')
 //         }
 //     }
 //   return (
@@ -52,95 +52,115 @@
 
 // export default Register;
 
+
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { registerUser } from "../Apis/Api";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const {
     register,
-    handleSubmit,watch,
+    handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     mode: "all",
   });
-  const password=watch('password')
-  const handleLoginForm = () => {
-    console.log("Form Submmitted");
+
+  const password = watch("password");
+  const router=useNavigate()
+
+  const handleRegisterForm = async(data) => {
+    console.log("Form Submitted");
+    const result=await registerUser(data)
+    console.log(result)
+    router('/')
   };
+
   return (
     <div className="register-container">
       <form
-        action=""
         className="register-card"
-        onSubmit={handleSubmit(handleLoginForm)}
+        onSubmit={handleSubmit(handleRegisterForm)}
       >
         <h1>Create Account</h1>
         <p>Join us and start shopping today!</p>
 
+        {/* Username */}
         <input
           type="text"
-          placeholder="Enter your username"
-          {...register("username", {
-            required: { value: true, message: "Username is required" },
+          placeholder="Enter your name"
+          {...register("name", {
+            required: "Username is required",
           })}
         />
-        {errors?.username && (
-          <p className="error-message">{errors.username.message}</p>
+        {errors.name && (
+          <p className="error-message">{errors.name.message}</p>
         )}
+
+        {/* Email */}
         <input
           type="text"
           placeholder="Enter your email"
           {...register("email", {
-            required: { value: true, message: "Email is required" },
+            required: "Email is required",
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
               message: "Enter a valid email address",
             },
           })}
         />
-        {errors?.email && (
+        {errors.email && (
           <p className="error-message">{errors.email.message}</p>
         )}
+
+        {/* Password */}
         <input
           type="password"
           placeholder="Enter your password"
           {...register("password", {
-            required: { value: true, message: "Password must be required" },
+            required: "Password is required",
             minLength: {
               value: 6,
-              message: "Password Must be atleast 6 characters",
+              message: "Password must be at least 6 characters",
             },
             maxLength: {
               value: 10,
-              message: "Password cant be more than 1 characters",
+              message: "Password cannot be more than 10 characters",
             },
             pattern: {
               value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,10}$/,
-              message: "Password must contain uppercase, lowercase and number",
+              message:
+                "Password must contain uppercase, lowercase and number",
             },
           })}
         />
-        {errors?.password && (
+        {errors.password && (
           <p className="error-message">{errors.password.message}</p>
         )}
+
+        {/* Confirm Password */}
         <input
           type="password"
           placeholder="Confirm your password"
-          {...register('confirmPassword',{validate:(value)=>{
-            if(value==password){
-              return true
-            }
-            return "Confirm password don't match"
-          }})}
+          {...register("confirmPassword", {
+            validate: (value) =>
+              value === password || "Password do not match",
+          })}
         />
-        {errors?.confirmPassword && (
-          <p className="error-message">{errors.confirmPassword.message}</p>
+        {errors.confirmPassword && (
+          <p className="error-message">
+            {errors.confirmPassword.message}
+          </p>
         )}
 
         <button type="submit">Register</button>
+
         <span className="extra">
-          Already have an account? <Link to="/login">Login</Link>{" "}
+          Already have an account? <Link to="/login">Login</Link>
         </span>
       </form>
     </div>

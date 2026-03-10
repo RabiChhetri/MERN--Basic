@@ -490,3 +490,64 @@ button {
 button:hover {
   background-color: #357abd;
 }
+.add-product-container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f4f6fb;
+  font-family:'Segoe UI',sans-serif;
+}
+
+.product-form{
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  width:400px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.product-form h2{
+  text-align:center;
+  margin-bottom:25px;
+  color:#333;
+}
+
+.product-form input,
+.product-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  outline:none;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.product-form textarea{
+  resize:none;
+  height:90px;
+}
+
+.product-form input:focus,
+.product-form textarea:focus{
+  border-color:#7b61ff;
+  box-shadow:0 0 5px rgba(123,97,255,0.3);
+}
+
+.product-form button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(45deg,#7b61ff,#00e5ff);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.product-form button:hover{
+  transform:scale(1.05);
+}

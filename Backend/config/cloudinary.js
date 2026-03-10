@@ -4,7 +4,7 @@ const fs=require('fs')
 cloudinary.config({
     cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
     api_key:process.env.CLOUDINARY_API_KEY,
-    api_secret:CLOUDNARY_SECRET_KEY
+    api_secret:process.env.CLOUDNARY_SECRET_KEY
 })
 
 async function uploadOnCloudinary(filepath) {

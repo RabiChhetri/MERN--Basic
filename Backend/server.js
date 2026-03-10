@@ -3,6 +3,7 @@ const express=require('express')
 const mongoose=require('mongoose')
 const cors=require('cors')
 const userRouter=require('./router/userRouter')
+const productRouter=require('./router/productRouter')
 const dns=require('dns')
 dns.setServers(['8.8.8.8','8.8.4.4'])
 const cookieParser=require('cookie-parser')
@@ -20,6 +21,8 @@ app.use(cors(corsOption))
 app.use(cookieParser())
 
 app.use('/api/auth',userRouter)
+
+app.use('/api/product',productRouter)
 
 
 mongoose.connect(process.env.MONGODB_URI)

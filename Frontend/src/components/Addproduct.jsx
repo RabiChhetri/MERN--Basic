@@ -1,18 +1,29 @@
 import React, { useState } from "react";
+import { createProduct } from "../Apis/productApi";
 const Addproduct = () => {
     const [product, setProduct] = useState({
         name:'',
-        price:''
+        price:'',
+        image:null
     })
     const updateValue=(e)=>{
         setProduct((prevState)=>({
             ...prevState,[e.target.name]:e.target.value
         }))
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
         e.preventDefault()
         console.log('Form Submitted')
-        console.log(product.name)
+        console.log(product)
+        const data=await createProduct(product)
+        console.log(data)
+    }
+    const handleImage=(e)=>{
+        console.log(product)
+        setProduct({
+            ...product,
+            image:e.target.files[0]
+        })
     }
   return (
     <div className="add-product-container">
@@ -20,7 +31,7 @@ const Addproduct = () => {
             <h2>Add New Product</h2>
             <input type="text" name="name" placeholder="Enter a product name" value={product.name}  onChange={updateValue}/>
             <input type="number" name="price" placeholder="Enter a price" value={product.price} onChange={updateValue}/>
-            <input type="file" name="image"/>
+            <input type="file" name="image" onChange={handleImage}/>
             <button type='submit'>Add Product</button>
         </form>
     </div>

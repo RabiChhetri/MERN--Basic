@@ -1,7 +1,7 @@
 const productModel=require('../models/product.model')
 const uploadOnCloudinary=require('../config/cloudinary')
 
-async function productUpload(params) {
+async function productUpload(req,res) {
     const {name,price}=req.body
     if(!name || !price){
         return res.status(403).json({

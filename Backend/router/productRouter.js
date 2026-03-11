@@ -7,6 +7,6 @@ const router=express.Router()
 
 router.post('/create',upload.single('image'),authMiddlewares.authMiddleware,productController.productUpload)
 
-
+router.get('/getAllProduct',productController.getProduct)
 
 module.exports=router

@@ -12,6 +12,9 @@ const productSchema=new mongoose.Schema({
     discription:{
         type:String,
         
+    },
+    imageUrl:{
+        type:String
     }
 },{timestamps:true})
 

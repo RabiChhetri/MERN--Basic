@@ -8,10 +8,15 @@ async function productUpload(req,res) {
             message:'name or price is missing'
         })
     }
-    console.log(req.file)
-    console.log(name,price)
-
     const imageUrl=await uploadOnCloudinary(req.file.path)
-    console.log(imageUrl)
+    const product=await productModel.create({
+      name,
+      price,
+      imageUrl
+    })
+    res.status(201).json({
+      message:'Product Added Successfully',
+      product
+    })
 }
 module.exports={productUpload}

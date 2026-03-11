@@ -1,4 +1,4 @@
-import { useQuery,useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getProductDetails } from "../Apis/productApi";
 import React from "react";
 

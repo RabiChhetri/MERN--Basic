@@ -1,4 +1,4 @@
-export const createProduct=async(product)=>{
+export const createProduct=async({product})=>{
      const data=new FormData()
     Object.entries(product).map(([key,value])=>{
         data.append(key,value)

@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 import { createProduct} from "../Apis/productApi";
 import { useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
 const Addproduct = () => {
+    const createMutation=useMutation({
+        mutationFn:({product})=>createProduct({product}),
+        onSuccess:(data)=>{
+            alert(data.message)
+        },
+        onError:(error)=>{
+            console.log('error')
+        }
+    })
+
     const [product, setProduct] = useState({
         name:'',
         price:'',
@@ -14,7 +25,7 @@ const Addproduct = () => {
     }
     const handleSubmit=async(e)=>{
         e.preventDefault()
-        const data=await createProduct(product)
+        createMutation.mutate({product})
      }
     const handleImage=(e)=>{
          setProduct({

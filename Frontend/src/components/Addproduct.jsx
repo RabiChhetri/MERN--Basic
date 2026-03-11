@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { createProduct } from "../Apis/productApi";
+import { createProduct} from "../Apis/productApi";
+import { useEffect } from "react";
 const Addproduct = () => {
     const [product, setProduct] = useState({
         name:'',
@@ -13,18 +14,15 @@ const Addproduct = () => {
     }
     const handleSubmit=async(e)=>{
         e.preventDefault()
-        console.log('Form Submitted')
-        console.log(product)
         const data=await createProduct(product)
-        console.log(data)
-    }
+     }
     const handleImage=(e)=>{
-        console.log(product)
-        setProduct({
+         setProduct({
             ...product,
             image:e.target.files[0]
         })
     }
+
   return (
     <div className="add-product-container">
         <form className="product-form" onSubmit={handleSubmit}>

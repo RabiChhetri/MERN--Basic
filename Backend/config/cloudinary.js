@@ -9,7 +9,8 @@ cloudinary.config({
 
 async function uploadOnCloudinary(filepath) {
     try {
-        const uploadResult=await cloudinary.uploader.upload(filepath)
+        const uploadResult=await cloudinary.uploader.upload(filepath);
+        console.log(uploadResult)
         fs.unlinkSync(filepath)
         return uploadResult.secure_url
     } catch (error) {
@@ -20,4 +21,4 @@ async function uploadOnCloudinary(filepath) {
     throw new Error('Cloudinary Uplaod failed')
 }
 
-module.exports={uploadOnCloudinary}
+module.exports=uploadOnCloudinary

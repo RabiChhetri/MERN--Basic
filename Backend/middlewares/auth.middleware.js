@@ -2,8 +2,8 @@ const jwt=require('jsonwebtoken')
 const userModel=require('../models/user.model')
 async function authMiddleware(req,res,next) {
     try {
+        console.log("call vako xa");
         const token=req.cookies.token
-        console.log(token)
         if(!token){
             res.status(401).json({
                 message:'Unathorized,token is missing'

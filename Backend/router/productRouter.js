@@ -7,4 +7,6 @@ const router=express.Router()
 
 router.post('/create',upload.single('image'),authMiddlewares.authMiddleware,productController.productUpload)
 
+
+
 module.exports=router

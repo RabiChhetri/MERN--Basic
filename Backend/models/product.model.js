@@ -11,7 +11,7 @@ const productSchema=new mongoose.Schema({
     },
     discription:{
         type:String,
-        required:true
+        
     }
 },{timestamps:true})
 

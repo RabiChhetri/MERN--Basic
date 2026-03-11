@@ -1,5 +1,5 @@
 export const createProduct=async(product)=>{
-    const data=new FormData()
+     const data=new FormData()
     Object.entries(product).map(([key,value])=>{
         data.append(key,value)
     })
@@ -18,3 +18,4 @@ export const createProduct=async(product)=>{
         throw new Error("Internal server",error)
     }
 }
+

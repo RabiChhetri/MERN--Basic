@@ -19,4 +19,13 @@ async function productUpload(req,res) {
       product
     })
 }
-module.exports={productUpload}
+
+async function getProduct(req,res) {
+  const product=await productModel.find({})
+  res.status(200).json({
+    message:'Product Fetch Successfully',
+    product
+  }) 
+}
+
+module.exports={productUpload,getProduct}

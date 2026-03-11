@@ -4,11 +4,12 @@ import './index.css'
 import App from './App.jsx'
 import {BrowserRouter} from 'react-router-dom'
 import QueryProvider from './queryProvider/queryProvider.jsx'
+
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
   <QueryProvider>
-    <App />
+      <BrowserRouter>
+        <App />
+    </BrowserRouter>
   </QueryProvider>
-  </BrowserRouter>
   
 )

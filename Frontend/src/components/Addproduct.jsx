@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createProduct,getProductDetails} from "../Apis/productApi";
+import { createProduct} from "../Apis/productApi";
 import { useEffect } from "react";
 const Addproduct = () => {
     const [product, setProduct] = useState({
@@ -22,13 +22,6 @@ const Addproduct = () => {
             image:e.target.files[0]
         })
     }
-    useEffect(()=>{
-        async function getAllProduct() {
-            const product=await getProductDetails()
-            console.log(product)
-        }
-        getAllProduct()
-    })
   return (
     <div className="add-product-container">
         <form className="product-form" onSubmit={handleSubmit}>

@@ -18,4 +18,14 @@ export const createProduct=async(product)=>{
         throw new Error("Internal server",error)
     }
 }
+export const getProductDetails=async()=>{
+    try {
+        const response=await fetch('http://localhost:3000/api/product/getAllProduct',{}
+        )
+        const productData=await response.json()
+        return productData
+    } catch (error) {
+        console.log("Internal Server Error",error)
+    }
 
+}

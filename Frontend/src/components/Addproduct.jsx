@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { createProduct,getProductDetails} from "../Apis/productApi";
 import { useEffect } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-const Addproduct = () => {
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+const Addproduct = () => {
+    const queryClient=useQueryClient()
     const {data,isLoading,isError}=useQuery({
         queryKey:['products'],
         queryFn:getProductDetails
@@ -13,6 +14,7 @@ const Addproduct = () => {
         mutationFn:({product})=>createProduct({product}),
         onSuccess:(data)=>{
             alert(data.message)
+            queryClient.invalidateQueries(['products'])
         },
         onError:(error)=>{
             console.log('error')

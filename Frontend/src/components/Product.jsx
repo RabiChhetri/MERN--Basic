@@ -60,8 +60,10 @@ const Product = () => {
             </div>
           </div>
           )}
+          <button className="cart-btn">Order Now</button>
           </>
         )}
+        
       </div>
     </div>
 

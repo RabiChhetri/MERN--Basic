@@ -10,7 +10,7 @@ const Product = () => {
     queryKey: ["products"],
     queryFn: getProductDetails
   });
-  console.log(data)
+
 
   if (isLoading) {
     return <h2 style={{textAlign:"center"}}>Loading Products...</h2>;
@@ -18,6 +18,10 @@ const Product = () => {
 
   if (isError) {
     return <h2 style={{textAlign:"center"}}>Error loading products</h2>;
+  }
+
+  const addToCart=(id)=>{
+    console.log(id)
   }
 
   return (
@@ -32,7 +36,7 @@ const Product = () => {
               <h3>{item.name}</h3>
               <p className="price">${item.price}</p>
               <button
-                className="cart-btn"
+                className="cart-btn" onClick={()=>addToCart(item._id)}
               >
                 Add to Cart
               </button>

@@ -21,7 +21,8 @@ const Product = () => {
   }
 
   const addToCart=(id)=>{
-    console.log(id)
+    const products=data?.product?.find(item=>item._id===id)
+    console.log(products.name)
   }
 
   return (

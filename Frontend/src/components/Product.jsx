@@ -22,7 +22,8 @@ const Product = () => {
 
   const addToCart=(id)=>{
     const products=data?.product?.find(item=>item._id===id)
-    console.log(products.name)
+    setCart((prevState)=>[...prevState,products])
+    console.log(cart)
   }
 
   return (
@@ -44,6 +45,23 @@ const Product = () => {
             </div>
           ))}
         </div>
+      </div>
+      {/* Cart Section */}
+      <div className="cart-box">
+        <h2>🛒Added in Cart {cart.length}</h2>
+        {cart.length===0?(<p className="empty-cart">Cart is Empty</p>):(
+          <>
+          {cart.map((item,index)=>
+          <div className="cart-item" key={index}>
+            <img src={item.imageUrl} alt={item.name} />
+            <div>
+              <h4>{item.name}</h4>
+              <p>${item.price}</p>
+            </div>
+          </div>
+          )}
+          </>
+        )}
       </div>
     </div>
 

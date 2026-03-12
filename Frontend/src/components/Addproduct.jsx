@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const Addproduct = () => {
     const queryClient=useQueryClient()
-    const {data,isLoading,isError}=useQuery({
+    const {data,isLoading,isError,refetch}=useQuery({
         queryKey:['products'],
         queryFn:getProductDetails
     })

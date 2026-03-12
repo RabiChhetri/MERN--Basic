@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import { createProduct} from "../Apis/productApi";
+import { createProduct,getProductDetails} from "../Apis/productApi";
 import { useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 const Addproduct = () => {
+
+    const {data,isLoading,isError}=useQuery({
+        queryKey:['products'],
+        queryFn:getProductDetails
+    })
+    
     const createMutation=useMutation({
         mutationFn:({product})=>createProduct({product}),
         onSuccess:(data)=>{
@@ -42,6 +48,9 @@ const Addproduct = () => {
             <input type="file" name="image" onChange={handleImage}/>
             <button type='submit'>Add Product</button>
         </form>
+        {data?.product?.map((item,index)=>
+        <li>{item.name}</li>
+        )}
     </div>
   );
 };

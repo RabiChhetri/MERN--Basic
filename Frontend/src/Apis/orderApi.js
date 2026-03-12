@@ -1,11 +1,11 @@
-export const createOrder=async()=>{
+export const createOrder=async({cart})=>{
     try {
         const response=await fetch('http://localhost:3000/api/order/createOrder',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify({}),
+            body:JSON.stringify({cart}),
             credentials:'include'
         })
         const result=await response.json()

@@ -1,10 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getProductDetails } from "../Apis/productApi";
 import React, { useState } from "react";
+import { createOrder } from "../Apis/orderApi";
 
 const Product = () => {
 
   const [cart, setCart] = useState([])
+
+  const createMutation=useMutation({
+    mutationFn:(cart)=>createOrder({cart}),
+    onSuccess:(data)=>{
+      setCart([])
+    },
+    onError:(error)=>{
+      console.log('Order Failed')
+    }
+
+  })
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["products"],
@@ -24,6 +36,10 @@ const Product = () => {
     const products=data?.product?.find(item=>item._id===id)
     setCart((prevState)=>[...prevState,products])
     console.log(cart)
+  }
+
+  const handleOrder=()=>{
+    createMutation.mutate(cart)
   }
 
   return (
@@ -60,7 +76,7 @@ const Product = () => {
             </div>
           </div>
           )}
-          <button className="cart-btn">Order Now</button>
+          <button className="cart-btn" onClick={handleOrder}>Order Now</button>
           </>
         )}
         

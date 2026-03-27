@@ -19,9 +19,13 @@ async function createOrder(req,res) {
       productItems.push(product._id)
       console.log(productItems)
       }
+      const cardPrice=card.reduce((accumulator,currentValue)=>{
+         return accumulator+parseInt(currentValue.price)
+      },0)
+      console.log("card",cardPrice)
 
     } catch (error) {
-        
+        console.log(error)
     }
     
    }

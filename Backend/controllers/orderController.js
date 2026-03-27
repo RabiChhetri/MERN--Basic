@@ -24,6 +24,18 @@ async function createOrder(req,res) {
       },0)
       console.log("card",cardPrice)
 
+      const order=await orderModel.create({
+         product:productItems,
+         user:req.isUser._id,
+         total:cardPrice,
+      })
+      console.log(order)
+
+      return res.status(201).json({
+         message:"Order created Successfully",
+         order
+      })
+
     } catch (error) {
         console.log(error)
     }

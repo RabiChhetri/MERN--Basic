@@ -745,3 +745,63 @@ button:hover {
   transform:scale(1.05);
   box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
+
+
+/* quantity container */
+.quantity-box{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:12px 0;
+}
+
+/* + and - buttons */
+.qty-btn{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  font-size:20px;
+  font-weight:bold;
+  color:white;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.3s ease;
+}
+
+/* plus button gradient */
+.qty-btn.plus{
+  background: linear-gradient(135deg,#6a5af9,#2ec8f3);
+}
+
+/* minus button gradient */
+.qty-btn.minus{
+  background: linear-gradient(135deg,#ff7a7a,#ff4d4d);
+}
+
+/* hover effect */
+.qty-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* click effect */
+.qty-btn:active{
+  transform:scale(0.9);
+}
+
+/* quantity input */
+.qty-input{
+  width:55px;
+  height:38px;
+  text-align:center;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:bold;
+  background:#fff;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}

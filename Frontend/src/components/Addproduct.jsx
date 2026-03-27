@@ -50,9 +50,9 @@ const Addproduct = () => {
             <input type="file" name="image" onChange={handleImage}/>
             <button type='submit'>Add Product</button>
         </form>
-        {data?.product?.map((item,index)=>
+        {/* {data?.product?.map((item,index)=>
         <li>{item.name}</li>
-        )}
+        )} */}
     </div>
   );
 };
